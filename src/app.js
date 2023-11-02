@@ -1,5 +1,5 @@
 const express = require('express')
-const ignoredTestRouter = require('./routes/ignoredTestRoutes')
+const tsRoutes = require('./routes/tsRoutes')
 const bodyParser = require('body-parser')
 
 class App {
@@ -10,7 +10,7 @@ class App {
     }
 
     routes() {
-        this.app.use(ignoredTestRouter);
+        this.app.use(tsRoutes);
     }
     bodyParser(){
         this.app.use(bodyParser.text({type:"*/*"}));

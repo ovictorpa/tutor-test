@@ -1,13 +1,12 @@
-const IgnoredTestService = require('../service/IgnoredTestService')
-const compareString = require('../utils/stringCompare')
+const TsService = require('../service/TsService')
 const bodyParser = require('body-parser')
 bodyParser.text({type:"*/*"})
 
-class IgnoredTestController {
+class TsController {
     
     getExerciseById(req, res) {
         const { id } = req.params;
-        const service = new IgnoredTestService();
+        const service = new TsService();
         const exercise = service.findExerciseById(id);
 
         return res.status(200).set({'Content-Type':'text/plaint'}).send(exercise);
@@ -18,7 +17,7 @@ class IgnoredTestController {
         const { id } = req.params;
         const  userCode  = req.body;
 
-        const service = new IgnoredTestService();
+        const service = new TsService();
         const exerciseRefactores = service.findExerciseRefactoredById(id);
 
         const isEquals = exerciseRefactores.localeCompare(userCode)
@@ -29,4 +28,4 @@ class IgnoredTestController {
     }
 }
 
-module.exports = new IgnoredTestController();
+module.exports = new TsController();
