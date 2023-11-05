@@ -20,8 +20,13 @@ class TsController {
         const service = new TsService();
         const exerciseRefactores = service.findExerciseRefactoredById(id);
 
-        const isEquals = exerciseRefactores.localeCompare(userCode)
-        if(isEquals == 0) {
+        const userCodeAux = userCode.replace(/\s/g, '').toLowerCase();
+        const exerciseRefactoresAux = exerciseRefactores.replace(/\s/g, '').toLowerCase();
+
+        const isEquals = exerciseRefactores.localeCompare(userCode);
+        const isEqualsWithoutSpaces = exerciseRefactoresAux.localeCompare(userCodeAux);
+
+        if(isEquals == 0 || isEqualsWithoutSpaces == 0) {
             res.set({'Content-Type':'text/plaint'}).send("SMELL REMOVIDO");
         }
         else res.send("SMELL NÃO REMOVIDO")
